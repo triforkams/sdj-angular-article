@@ -1,0 +1,14 @@
+{
+  "name": "sdj-angular-article",
+  "version": "0.1.0",
+  "description": "Sample application for the AngularJS article",
+  "main": "app.js",
+  "dependencies": {
+    "consolidate": "~0.9.1",
+    "express": "~3.3.4",
+    "swig": "~0.14.0"
+  },
+  "author": "Jettro Coenradie",
+  "license": "Apache License Version 2.0",
+  "private": true
+}
