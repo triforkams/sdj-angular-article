@@ -4,8 +4,8 @@ var express = require('express'),
     path = require('path');
 
 var messages = {"messages":[
-					{"id":1,"description":"Messages 1"},
-					{"id":2,"description":"Messages 2"}
+					{"id":1,"description":"AngularJS is cool to work with"},
+					{"id":2,"description":"AngularJS is also very flexible"}
 				],
 				"latestId":2
 	};

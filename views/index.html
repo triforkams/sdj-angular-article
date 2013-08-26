@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>SDJ AngularJS sample</title>
+	<link rel="stylesheet" type="text/css" media="all" href="/css/pure-0.2.1.min.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="/css/main.css" />
 	<script src="/js/angular-1.0.7.min.js"></script>
 	<script src="/js/angular-resource-1.0.7.min.js"></script>
@@ -12,18 +13,27 @@
 </head>
 
 <body>
-	<h1>Hello, {{name}}.</h1>
-	<div ng-controller="IndexController">
-		[[label]]
-	</div>
-
-	<div ng-controller="MessagesController">
-		<div ng-init="loadMessages()">
-			<input ng-model="newMessage" autofocus="true" placeholder="Enter new message ..."/>
-			<button ng-click="createNewMessage()">New Message</button>
+	<div class="pure-g">
+		<div class="pure-u-1-12">
 		</div>
-		<div ng-repeat="message in messages">
-			[[message.description]]
+		<div class="pure-u-5-6">
+			<h1>Hello, {{name}}.</h1>
+			<div>
+				<p>Welcome to this very basic message board.</p>
+			</div>
+			<div ng-controller="MessagesController">
+				<div ng-init="loadMessages()">
+					<form class="pure-form">
+						<legend>Create your own message</legend>
+						<input ng-model="newMessage" autofocus="true" placeholder="Enter new message ..."/>
+						<button class="pure-button pure-button-primary" ng-click="createNewMessage()">New Message</button>
+					</form>
+				</div>
+				<h2>The messages</h2>
+				<div ng-repeat="message in messages" class="sdj-message">
+					[[message.description]]
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
