@@ -6,6 +6,7 @@
 	<title>SDJ AngularJS sample</title>
 	<link rel="stylesheet" type="text/css" media="all" href="/css/main.css" />
 	<script src="/js/angular-1.0.7.min.js"></script>
+	<script src="/js/angular-resource-1.0.7.min.js"></script>
 	<script src="/js/services.js"></script>
 	<script src="/js/app.js"></script>
 </head>
@@ -17,6 +18,10 @@
 	</div>
 
 	<div ng-controller="MessagesController">
+		<div ng-init="loadMessages()">
+			<input ng-model="newMessage" autofocus="true" placeholder="Enter new message ..."/>
+			<button ng-click="createNewMessage()">New Message</button>
+		</div>
 		<div ng-repeat="message in messages">
 			[[message.description]]
 		</div>

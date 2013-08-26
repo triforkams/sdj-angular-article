@@ -3,18 +3,35 @@ var express = require('express'),
     cons = require('consolidate'),
     path = require('path');
 
+var messages = {"messages":[
+					{"id":1,"description":"Messages 1"},
+					{"id":2,"description":"Messages 2"}
+				],
+				"latestId":2
+	};
+
 app.engine('html', cons.swig);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.bodyParser());
 
 app.get('/', function(req, res){
     return res.render('index', { "name" : "AngularJS" });
 });
 
-app.get('/messages', function(req,res) {
-	return res.send('{"messages":[{"description":"Messages 1"},{"description":"Messages 2"}]}');
+app.get('/api/message', function(req,res) {
+	return res.send(JSON.stringify(messages.messages));
+});
+
+app.post('/api/message', function(req,res) {
+	var message = {};
+	message.description = req.body.description;
+	messages.latestId = messages.latestId + 1;
+	message.id = messages.latestId;
+	messages.messages.push(message);
+	return res.send(message, 200);
 });
 
 app.get('*', function(req, res){
