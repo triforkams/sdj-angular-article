@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['myApp.services','ngResource']).
+var app = angular.module('myApp', ['myApp.services']).
 	config(['$locationProvider', '$interpolateProvider', function($locationProvider, $interpolateProvider) {
 	    $locationProvider.html5Mode(true);
 	    $interpolateProvider.startSymbol('[[');
