@@ -7,20 +7,24 @@ var app = angular.module('myApp', ['myApp.services','ngResource']).
 	    $interpolateProvider.endSymbol(']]');
 	}]);
 
-app.controller('MessagesController', function MessagesController($scope, messages) {
+app.controller('MessagesController', function MessagesController($scope, $http) {
 	$scope.messages = [];
 	$scope.newMessage = "";
 
     $scope.createNewMessage = function() {
-    	messages.storeMessage($scope.newMessage,function(response) {
-            $scope.newMessage = "";
-    		$scope.loadMessages(messages);
-    	});
+    	var aMessage = {};
+    	aMessage.description = $scope.newMessage;
+    	$http.post('/api/message', aMessage).
+    		success(function(data) {
+    			$scope.newMessage = "";
+    			$scope.loadMessages();
+    		});
     };
 
     $scope.loadMessages = function () {
-    	messages.loadMessages(function (data) {
-	        $scope.messages = data;
-	    });
+		$http.get('/api/message').
+			success(function(data) {
+				$scope.messages = data;
+			});
     }
 });
