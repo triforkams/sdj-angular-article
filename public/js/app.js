@@ -7,17 +7,13 @@ var app = angular.module('myApp', ['myApp.services','ngResource']).
 	    $interpolateProvider.endSymbol(']]');
 	}]);
 
-app.controller('IndexController', function IndexController($scope) {
-    $scope.label = "This bindings is brought you you by [[]] interpolation symbols.";
-});
-
 app.controller('MessagesController', function MessagesController($scope, messages) {
 	$scope.messages = [];
 	$scope.newMessage = "";
 
     $scope.createNewMessage = function() {
     	messages.storeMessage($scope.newMessage,function(response) {
-    		console.log(response);
+            $scope.newMessage = "";
     		$scope.loadMessages(messages);
     	});
     };
